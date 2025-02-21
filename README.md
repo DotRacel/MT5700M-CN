@@ -17,6 +17,7 @@ It has adapted `ECM, NCM, and RNDIS` universal drivers in kernel version **2.6.2
 
 ## Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control)
+- [MT570X Windows USB Driver](./drivers/MT570X-user-windows.zip)
 - More coming soon...
 
 ## Specification
