@@ -13,7 +13,9 @@ The MT5700M-CN supports 5G NR NSA and SA dual-mode networking, along with 5G and
 ## Connection Methods
 The MT5700M-CN module features an external interface in the form of an **M.2 Key-B interface**.
 
-It has adapted `ECM, NCM, and RNDIS` universal drivers in kernel version **2.6.22 and later**. The default interfaces integrated with the USB serial port driver include: `PCUI, Diag, SerialB, SerialC, ECM, NCM, and GPS`.
+It only supports application scenarios as a USB DEVICE. A DEVICE does not have the ability to initiate communication actively and must wait for instructions from the HOST. It is recognized by the HOST through a hardware connection and handshake process, and during the enumeration process, it provides descriptor information (such as device ID, vendor ID, function description, etc.) to allow the HOST to understand its capabilities and complete the configuration.
+
+It has adapted `ECM, NCM, and RNDIS` universal drivers in kernel version **2.6.22 and later**. The default interfaces integrated with the USB serial port driver include: `PCUI, Diag, SerialB, SerialC, ECM, NCM, and GPS (even ADB in debug mode)`.
 
 ## Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control)
