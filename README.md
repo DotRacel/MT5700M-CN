@@ -17,6 +17,7 @@ It has adapted `ECM, NCM, and RNDIS` universal drivers in kernel version **2.6.2
 
 ## Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control)
+- [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
 - [MT570X Windows USB Driver](./drivers/MT570X-user-windows.zip)
 - More coming soon...
 
