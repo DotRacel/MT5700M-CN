@@ -51,8 +51,8 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 ## 🔗 Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control) 
 - [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
-- [MT570X Windows USB Driver](./drivers/MT570X-user-windows.zip)
 - [TD-Tech MT5700 PPT](./images/other/TD-Tech%205G%20MT5700%20Series%20202303.pptx)
+- [MT5700 Related Documents](https://drive.google.com/drive/folders/1AWR5jJWn9jiKCCSJt4vxaNVYaPxkPEUu?usp=sharing)
 - ✨ More coming soon...
 
 ## 📡 Antenna Definition
