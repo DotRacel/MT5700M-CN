@@ -5,6 +5,7 @@
     - [🔗 USB Modes](#-usb-modes)
     - [💻 PCIe Mode](#-pcie-mode)
   - [🔗 Related Resources](#-related-resources)
+  - [📡 Antenna Definition](#-antenna-definition)
   - [📋 Specification](#-specification)
 
 # 📡 MT5700M-CN
@@ -53,6 +54,9 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 - [MT570X Windows USB Driver](./drivers/MT570X-user-windows.zip)
 - [TD-Tech MT5700 PPT](./images/other/TD-Tech%205G%20MT5700%20Series%20202303.pptx)
 - ✨ More coming soon...
+
+## 📡 Antenna Definition
+![](./images/antenna-define.png)
 
 ## 📋 Specification
 ![](./images/spec/0.png)
