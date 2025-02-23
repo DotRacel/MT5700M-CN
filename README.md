@@ -26,9 +26,9 @@ When used as a *DEVICE*, there are a total of 9 USB port configuration modes, wh
 |Mode|Description|
 |-|-|
 |0|🐧 Linux ECM Normal, `ECM+DIAG+PCUI+Serial_B+Serial_C+GPS`|
-|1|🪟 Windows ECM Normal, `DIAG+PCUI+Serial_B+Serial_C+GPS+NCM`|
+|1|🪟 Windows NCM Normal, `DIAG+PCUI+Serial_B+Serial_C+GPS+NCM`|
 |2|🐧 Linux ECM Debug, `ECM+DIAG+PCUI+ADB+Serial_B+Serial_C+GPS`|
-|3|🪟 Windows ECM Debug, `DIAG+PCUI+Serial_B+Serial_C+GPS+ADB+NCM`|
+|3|🪟 Windows NCM Debug, `DIAG+PCUI+Serial_B+Serial_C+GPS+ADB+NCM`|
 |4|🐧 Linux NCM Normal(Default), `NCM+DIAG+PCUI+Serial_B+Serial_+GPS`|
 |5|🐧 Linux NCM Debug, `NCM+DIAG+PCUI+ADB+Serial_B+Serial_C+GPS`|
 |6|🪟 Windows RNDIS, `RNDIS+DIAG+PCUI+Serial_B+Serial_C+GPS`|
