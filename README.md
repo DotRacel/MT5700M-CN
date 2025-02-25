@@ -5,11 +5,11 @@
     - [🔗 USB Modes](#-usb-modes)
     - [💻 PCIe Mode](#-pcie-mode)
   - [Tutorials](#tutorials)
-    - [How to get Internet acccess with Windows](#how-to-get-internet-acccess-with-windows)
+    - [❓How to get Internet acccess with Windows](#how-to-get-internet-acccess-with-windows)
       - [Setup](#setup)
       - [Dial up](#dial-up)
-    - [How to recover modem IMEI](#how-to-recover-modem-imei)
-    - [How to update/degrade firmware](#how-to-updatedegrade-firmware)
+    - [❓How to recover modem IMEI](#how-to-recover-modem-imei)
+    - [❓How to update/degrade firmware](#how-to-updatedegrade-firmware)
   - [🔗 Related Resources](#-related-resources)
   - [📡 Antenna Definition](#-antenna-definition)
   - [📋 Specification](#-specification)
@@ -55,7 +55,7 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 - Default `AT^TDPCIELANCFG=1` uses `RTL8111` (1Gbps 🔌)
 
 ## Tutorials
-### How to get Internet acccess with Windows
+### ❓How to get Internet acccess with Windows
 This section heavily depends on `AT User Manuals`, if you have any questions with the commands, you may look up the manual, which is available in *Materials* section
 #### Setup
 You only need to send the commands **once** as they are saved even power is off.
@@ -65,12 +65,12 @@ You only need to send the commands **once** as they are saved even power is off.
 #### Dial up
 You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
 
-### How to recover modem IMEI
+### ❓How to recover modem IMEI
 Send command `AT^PHYNUM=IMEI,[Original IMEI]` to change it.  
 You may use command like `ATI` to check if this works.  
-```⚠️ Cautious: Remember to backup your current IMEI before changing it```
+```⚠️ WARNING: Remember to backup your current IMEI before changing it```
 
-### How to update/degrade firmware
+### ❓How to update/degrade firmware
 Firmware can be updated easily on Windows platform.  
 You can download update wizards provided below to flash a **specific** version of firmware.
 
