@@ -53,7 +53,8 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 - [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
 - [TD-Tech MT5700 PPT](./images/other/TD-Tech%205G%20MT5700%20Series%20202303.pptx)
 - [MT5700 Related Documents](https://drive.google.com/drive/folders/1AWR5jJWn9jiKCCSJt4vxaNVYaPxkPEUu?usp=sharing)
-- ✨ More coming soon...
+- [Windows Driver](https://mega.nz/folder/uioW2CLK#c9fkeUznVEJknlmvVdemBg)
+- [Firmware update wizard](https://mega.nz/folder/m6xUTYhJ#NNa0ybZhL3m31rZXbDQrgg)
 
 ## 📡 Antenna Definition
 ![](./images/antenna-define.png)
