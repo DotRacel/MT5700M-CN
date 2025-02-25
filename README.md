@@ -8,6 +8,7 @@
     - [How to get Internet acccess with Windows](#how-to-get-internet-acccess-with-windows)
       - [Setup](#setup)
       - [Dial up](#dial-up)
+    - [How to recover modem IMEI](#how-to-recover-modem-imei)
   - [🔗 Related Resources](#-related-resources)
   - [📡 Antenna Definition](#-antenna-definition)
   - [📋 Specification](#-specification)
@@ -49,7 +50,7 @@ Key available ports:
 
 The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the modem will act as the host, providing network support for other endpoint devices like an Ethernet chipset or a WiFi chipset.
 
-- Using `AT^TDPCIELANCFG=2` sets PHY chip to `RTL8125` (2.5Gbps ⚡)
+- Using `AT^TDPCIELANCFG=2` sets PHY chip to `RTL8125` (2.5Gbps ⚡)  
 - Default `AT^TDPCIELANCFG=1` uses `RTL8111` (1Gbps 🔌)
 
 ## Tutorials
@@ -62,6 +63,12 @@ You only need to send the commands **once** as they are saved even power is off.
 3. Set auto dial and send in USB connection mode: `AT^SETAUTODIAL=1,2`
 #### Dial up
 You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
+
+### How to recover modem IMEI
+Send command `AT^PHYNUM=IMEI,[Original IMEI]` to change it.  
+You may use command like `ATI` to check if this works.  
+```⚠️ Cautious: Remember to backup your current IMEI before changing it```
+
 ## 🔗 Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control) 
 - [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
