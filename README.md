@@ -4,6 +4,10 @@
   - [🔌 Connection Methods](#-connection-methods)
     - [🔗 USB Modes](#-usb-modes)
     - [💻 PCIe Mode](#-pcie-mode)
+  - [Tutorials](#tutorials)
+    - [How to get Internet acccess with Windows](#how-to-get-internet-acccess-with-windows)
+      - [Setup](#setup)
+      - [Dial up](#dial-up)
   - [🔗 Related Resources](#-related-resources)
   - [📡 Antenna Definition](#-antenna-definition)
   - [📋 Specification](#-specification)
@@ -48,6 +52,16 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 - Using `AT^TDPCIELANCFG=2` sets PHY chip to `RTL8125` (2.5Gbps ⚡)
 - Default `AT^TDPCIELANCFG=1` uses `RTL8111` (1Gbps 🔌)
 
+## Tutorials
+### How to get Internet acccess with Windows
+This section heavily depends on `AT User Manuals`, if you have any questions with the commands, you may look up the manual, which is available in *Materials* section
+#### Setup
+You only need to send the commands **once** as they are saved even power is off.
+1. Set PHY to support 2.5Gbps: `AT^TDPCIELANCFG=2`
+2. Enable PCIE Power Manager: `AT^TDPMCFG=1,0,0,0`
+3. Set auto dial and send in USB connection mode: `AT^SETAUTODIAL=1,2`
+#### Dial up
+You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
 ## 🔗 Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control) 
 - [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
