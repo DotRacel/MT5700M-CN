@@ -9,6 +9,7 @@
       - [Setup](#setup)
       - [Dial up](#dial-up)
     - [How to recover modem IMEI](#how-to-recover-modem-imei)
+    - [How to update/degrade firmware](#how-to-updatedegrade-firmware)
   - [🔗 Related Resources](#-related-resources)
   - [📡 Antenna Definition](#-antenna-definition)
   - [📋 Specification](#-specification)
@@ -68,6 +69,10 @@ You have to send the command **everytime** you want to get access to the interne
 Send command `AT^PHYNUM=IMEI,[Original IMEI]` to change it.  
 You may use command like `ATI` to check if this works.  
 ```⚠️ Cautious: Remember to backup your current IMEI before changing it```
+
+### How to update/degrade firmware
+Firmware can be updated easily on Windows platform.  
+You can download update wizards provided below to flash a **specific** version of firmware.
 
 ## 🔗 Related Resources
 - [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control) 
