@@ -66,7 +66,7 @@ You only need to send the commands **once** as they are saved even power is off.
 You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
 
 
-### ❓How to update/degrade firmware
+### ❓How to update/downgrade firmware
 Firmware can be updated easily on Windows platform.  
 You can download update wizards provided below to flash a **specific** version of firmware.
 
