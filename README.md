@@ -59,12 +59,13 @@ The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the mode
 This section heavily depends on `AT User Manuals`, if you have any questions with the commands, you may look up the manual, which is available in *Materials* section
 #### Setup
 You only need to send the commands **once** as they are saved even power is off.
-1. Set PHY to support 2.5Gbps: `AT^TDPCIELANCFG=2`
-2. Enable PCIE Power Manager: `AT^TDPMCFG=1,0,0,0`
-3. Set auto dial and send in USB connection mode: `AT^SETAUTODIAL=1,2`
+1. Set to correct USB connection mode using `AT^SETMODE=<id>`. You may reference to the user manual to figure out which mode suits you best.
+2. Set PHY to support 2.5Gbps: `AT^TDPCIELANCFG=2` *(Optional)*
+3. Enable PCIE Power Manager: `AT^TDPMCFG=1,0,0,0` *(Optional)*
+4. Set auto dial and send in USB connection mode: `AT^SETAUTODIAL=1,1`
+*If you do not set autodial, you will have to dial up manually everytime.*
 #### Dial up
-You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
-
+You may dial up manually if you do not set autodial: `AT^NDISDUP=1,1`
 
 ### ❓How to update/downgrade firmware
 Firmware can be updated easily on Windows platform.  
