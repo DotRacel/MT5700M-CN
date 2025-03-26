@@ -65,10 +65,6 @@ You only need to send the commands **once** as they are saved even power is off.
 #### Dial up
 You have to send the command **everytime** you want to get access to the internet: `AT^NDISDUP=1,1`
 
-### ❓How to recover modem IMEI
-Send command `AT^PHYNUM=IMEI,[Original IMEI]` to change it.  
-You may use command like `ATI` to check if this works.  
-```⚠️ WARNING: Remember to backup your current IMEI before changing it```
 
 ### ❓How to update/degrade firmware
 Firmware can be updated easily on Windows platform.  
