@@ -45,7 +45,7 @@ Key available ports:
 - 🖥️ **PCUI**: Used for AT command communication
 - 📊 **Serial_B/C**: Used in conjunction with DIAG for log collection
 - 🔍 **DIAG**: Used for debugging and collecting log information
-- 🛠️ **ADB**: ~~Available only in debug modes~~ Not Supported Yet
+- 🛠️ **ADB**: Available only in debug mode and **firmwares for DEBUG**
 
 ### 💻 PCIe Mode
 
