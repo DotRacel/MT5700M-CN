@@ -1,87 +1,116 @@
-# 📚 Table of Contents
-- [📚 Table of Contents](#-table-of-contents)
-- [📡 MT5700M-CN](#-mt5700m-cn)
-  - [🔌 Connection Methods](#-connection-methods)
-    - [🔗 USB Modes](#-usb-modes)
-    - [💻 PCIe Mode](#-pcie-mode)
-  - [Tutorials](#tutorials)
-    - [❓How to get Internet acccess with Windows](#how-to-get-internet-acccess-with-windows)
-      - [Setup](#setup)
-      - [Dial up](#dial-up)
-    - [❓How to recover modem IMEI](#how-to-recover-modem-imei)
-    - [❓How to update/degrade firmware](#how-to-updatedegrade-firmware)
-  - [🔗 Related Resources](#-related-resources)
-  - [📡 Antenna Definition](#-antenna-definition)
-  - [📋 Specification](#-specification)
-
 # 📡 MT5700M-CN
 ![](./images/mt5700m-cn.png)
+## 介绍
+- `MT5700M-CN` 基于 `3GPP Release 16` 技术，支持 `5G NR NSA` 和 `SA` 双模组网，支持 5G 及行业特色功能：超级上行，`SUL`，`uRLLC`，`5G LAN`，高精度授时，网络切片以及行业定制等。
+- `MT5700M-CN` 支持 `5G Sub-6 GHz`，支持频段覆盖中国大陆，向下兼容 `4G/3G`。`5G NR` 上下行峰值速率分别可达`4Gbps` 和 `1.5Gbps`，可满足行业应用高带宽要求。
+- `MT5700M-CN` 采用 `M.2` 封装，采用高可靠性器件以及工业独特设计，适应工业环境的多样化，工作温度范至 `-30℃~70℃`。`MT5700M-CN` 集成了丰富的硬件接口，包括 `USB/XGE/PCIe/UART/SPI/I2C/USIM/GPIO` 等，充分满足工业设备接口需求。
 
-The MT5700M-CN supports 5G NR NSA and SA dual-mode networking, along with 5G and industry-specific features such as 3CC carrier aggregation, Super Uplink (SUL), uRLLC, 5G LAN, and more. It supports 5G Sub-6 GHz with frequency band coverage for **China** mainly and is backward compatible with 4G/3G. The peak downlink and uplink rates of 5G NR reach up to 4 Gbps and 1.5 Gbps⚡
+`MT5700M-CN` 因其上手容易，操作简单，支持 `3CC` 载波聚合，全新模组的价格相较于其他同类模组有优势，深受 5G CPE DIY 玩家的喜爱，但也因其私有 AT 手册不完整、不完全，导致部分功能不可用，可玩性相较于 `移远 Quectel` 模组略差。
 
-## 🔌 Connection Methods
+## 购买方式
+淘宝、闲鱼等平台均有个人、物联网设备厂家售卖，市场价在 ￥650 ~ ￥750 之间
 
-The MT5700M-CN module features an external interface in the form of an **M.2 Key-B interface**.
+## 🔌 连接方式
 
-### 🔗 USB Modes
+`MT5700M-CN` 采用 `M.2 Key-B` 接口封装，支持 `USB 3.0`, `PCIe`, `PHY` 数传。
 
-It only supports application scenarios as a **USB DEVICE**. A DEVICE does not have the ability to initiate communication actively and must wait for instructions from the HOST. It is recognized by the HOST through a hardware connection and handshake process, and during the enumeration process, it provides descriptor information (such as device ID, vendor ID, function description, etc.) to allow the HOST to understand its capabilities and complete the configuration.
+### 🔗 USB 3.0
 
-When used as a *DEVICE*, there are a total of 9 USB port configuration modes, which can be switched using the command `AT^SETMODE=<mode>`.
+作为 **USB 设备** 连接到主机，上报 **USB 端口形态** 后，与主机通讯工作。*现已支持 Windows, Linux*
 
-|Mode|Description|
+共有以下 9 种端口形态，可以通过 AT 命令 `AT^SETMODE=<端口形态 ID>` 进行设置，*命令发送后自动重启*。
+
+|ID|解释|
 |-|-|
 |0|🐧 Linux ECM Normal, `ECM+DIAG+PCUI+Serial_B+Serial_C+GPS`|
 |1|🪟 Windows NCM Normal, `DIAG+PCUI+Serial_B+Serial_C+GPS+NCM`|
 |2|🐧 Linux ECM Debug, `ECM+DIAG+PCUI+ADB+Serial_B+Serial_C+GPS`|
 |3|🪟 Windows NCM Debug, `DIAG+PCUI+Serial_B+Serial_C+GPS+ADB+NCM`|
-|4|🐧 Linux NCM Normal(Default), `NCM+DIAG+PCUI+Serial_B+Serial_+GPS`|
+|4|🐧 Linux NCM Normal **(默认)**, `NCM+DIAG+PCUI+Serial_B+Serial_+GPS`|
 |5|🐧 Linux NCM Debug, `NCM+DIAG+PCUI+ADB+Serial_B+Serial_C+GPS`|
 |6|🪟 Windows RNDIS, `RNDIS+DIAG+PCUI+Serial_B+Serial_C+GPS`|
-|7|🪟 Windows MBIM (Not Supported Yet), `MBIM+DIAG+PCUI+Serial_B+Serial_C+GPS`|
+|7|🪟 Windows MBIM (尚未支持), `MBIM+DIAG+PCUI+Serial_B+Serial_C+GPS`|
 |8|📞 PPP, `Modem+DIAG+PCUI+Serial_B+Serial_C+GPS`|
 
-Key available ports:
-- 🖥️ **PCUI**: Used for AT command communication
-- 📊 **Serial_B/C**: Used in conjunction with DIAG for log collection
-- 🔍 **DIAG**: Used for debugging and collecting log information
-- 🛠️ **ADB**: Available only in debug mode and **firmwares for DEBUG**
+#### 几个重要的端口形态解释:
+- 🖥️ **PCUI**: 用于 AT 通讯
+- 📊 **Serial_B/C**: 与 `DIAG` 结合使用，收集日志信息
+- 🔍 **DIAG**: 用于调试和日志，详见 `日志获取`
+- 🛠️ **ADB**: ADB 端口，只在 `debug` 固件中可用，无论是否处于 `Debug` 端口形态
 
-### 💻 PCIe Mode
+### 💻 PCIe 模式
 
-The module supports PCIe RC (Root Complex) mode **ONLY**. In this mode, the modem will act as the host, providing network support for other endpoint devices like an Ethernet chipset or a WiFi chipset.
+作为 `PCIe RC` 模式运行，暂不支持其他模式。
 
-- Using `AT^TDPCIELANCFG=2` sets PHY chip to `RTL8125` (2.5Gbps ⚡)  
-- Default `AT^TDPCIELANCFG=1` uses `RTL8111` (1Gbps 🔌)
+## 应用指南
 
-## Tutorials
-### ❓How to get Internet acccess with Windows
-This section heavily depends on `AT User Manuals`, if you have any questions with the commands, you may look up the manual, which is available in *Materials* section
-#### Setup
-You only need to send the commands **once** as they are saved even power is off.
-1. Set to correct USB connection mode using `AT^SETMODE=<id>`. You may reference to the user manual to figure out which mode suits you best.
-2. Set PHY to support 2.5Gbps: `AT^TDPCIELANCFG=2` *(Optional)*
-3. Enable PCIE Power Manager: `AT^TDPMCFG=1,0,0,0` *(Optional)*
-4. Set auto dial and send in USB connection mode: `AT^SETAUTODIAL=1,1`
-*If you do not set autodial, you will have to dial up manually everytime.*
-#### Dial up
-You may dial up manually if you do not set autodial: `AT^NDISDUP=1,1`
+### 准备工作
+- 安装 Windows/Linux 驱动
+- 安装任意 **串口软件**（如 `XCOM, SSCOM, ...`），串口参数往往不需要做调整。
+- 确保处于对应的端口形态，可以枚举出对应的端口。（Windows 可在 `设备管理器` 中查看， Linux 可以输入 `lsusb` 查看）
 
-### ❓How to update/downgrade firmware
-Firmware can be updated easily on Windows platform.  
-You can download update wizards provided below to flash a **specific** version of firmware.
+AT 通讯端口：
+- 如果处于 Windows 系统，端口为 `Application Interface`
+- 如果处于 Linux 系统，设备枚举往往为 `/dev/ttyUSB1`
 
-## 🔗 Related Resources
-- [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control) 
-- [luci-app-modem with support](https://github.com/Siriling/openwrt-app-actions/tree/c3c47cb0aeb4652bcc6f27e76ec1be8b5f74edec/applications/luci-app-modem)
-- [TD-Tech MT5700 PPT](./images/other/TD-Tech%205G%20MT5700%20Series%20202303.pptx)
-- [MT5700 Related Documents](https://drive.google.com/drive/folders/1AWR5jJWn9jiKCCSJt4vxaNVYaPxkPEUu?usp=sharing)
-- [Windows Driver](https://mega.nz/folder/uioW2CLK#c9fkeUznVEJknlmvVdemBg)
-- [Firmware update wizard](https://mega.nz/folder/m6xUTYhJ#NNa0ybZhL3m31rZXbDQrgg)
+### 拨号上网指南
+默认采用双栈网络 `（IPv4 + IPv6）`，如需修改，请参考手册。
 
-## 📡 Antenna Definition
+#### 手动拨号
+输入 `AT^NDISDUP=1,1`，观察回显，判断拨号是否成功。
+
+如需要取消拨号，输入 `AT^NDISDUP=1,0`.
+
+#### 自动拨号
+自动拨号在每次模块启动都会自动执行，无需手动干预。
+
+如果在此之前进行过自动拨号的配置，需要先取消设置，否则新的设置无法生效，输入 `AT^SETAUTODIAL=0`.
+
+- 如果是 `USB 3.0` 连接方式，输入 `AT^SETAUTODIAL=1,1`，观察回显。
+- 如果是 `PHY` 网口连接方式，输入 `AT^SETAUTODIAL=1,2`，观察回显。
+
+*对于 PCIe 连接方式，我暂无主机设备，请参考手册自行研究。*
+
+### ❓模块升级与降级
+因为缺失部分 Linux 平台的固件包，建议采用 Windows 平台主机进行升降级。
+
+1. 下载安装[鼎桥平台驱动](https://mega.nz/folder/uioW2CLK#c9fkeUznVEJknlmvVdemBg).
+2. 下载对应平台的[升级导向](https://mega.nz/folder/m6xUTYhJ#NNa0ybZhL3m31rZXbDQrgg)，按升级导向要求进行升级、降级即可。
+
+## 手册下载
+[链接](https://drive.google.com/drive/folders/1AWR5jJWn9jiKCCSJt4vxaNVYaPxkPEUu?usp=sharing)中包含如下指导手册：
+
+- MT5700M-CN 5G模块硬件设计指南
+- 5G LAN功能验证指导
+- 5G切片功能测试指导
+- AT命令手册
+- DIAG TOOL 用户指南
+- FOTA升级指南
+- Linux内核驱动集成指导
+- USB接口应用指南
+- Windows USB 驱动安装指南
+- 休眠唤醒指导书
+- 功能应用指南
+- 温保方案使用指南
+- 近端升级指导书_Linux
+- 近端升级指导书_windows
+- 近端日志获取与工具集成指导书_Linux
+- 近端日志获取指导书_Windows
+- 高精度授时功能验证指导
+
+著作权归 **鼎桥通信技术有限公司** 所有，如有侵权，请电邮 `i@racel.dev`，我将会在第一时间删除。
+
+## 对 `MT5700M-CN` 兼容的软件
+- [QModem](https://github.com/FUjr/QModem): 模组管理插件，同时兼容 QWRT/LEDE/Immortalwrt/Openwrt
+- [MT5700M PHY AT ETH Control](https://github.com/Coming-2022/mt5700m_at_control): Python 脚本实现的网口连接方式控制脚本
+- [Web UI](http://beta1.lbu.cc/): 由个人开发者开发的 `MT5700M-CN` 控制面板，暂不开源，请自行寻找下载
+
+## Linux 兼容
+详细参见 `近端日志获取与工具集成指导书_Linux`，或者可以直接使用我写好的[内核补丁](./resources/999-tdtech-usb-vendor.patch)。
+
+## 📡 天线定义
 ![](./images/antenna-define.png)
 
-## 📋 Specification
+## 📋 技术参数
 ![](./images/spec/0.png)
 ![](./images/spec/1.png)
