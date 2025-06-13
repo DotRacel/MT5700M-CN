@@ -108,6 +108,94 @@ AT 通讯端口：
 ## Linux 兼容
 详细参见 `近端日志获取与工具集成指导书_Linux`，或者可以直接使用我写好的[内核补丁](./resources/999-tdtech-usb-vendor.patch)。
 
+## FOTA 升级教程
+### 服务器搭建
+#### 准备工作
+*此处使用 HTTP 而不使用 HTTPS，因为证书配置过于繁琐。*
+1. 公网 nginx 服务器
+2. 二进制模组固件包
+3. 模组处于在网状态
+
+假设固件包放在 `/tmp/fota/full` 文件夹下（截止到现在，你必须将其放置在 `full` 文件夹下`
+
+假设你的 nginx 运行在 `http://localhost/`
+#### nginx 配置
+假设我们最终的 FOTA 下载链接为 `http://localhost/download/b16`
+
+那么你的站点配置应该是：
+```
+location /download/b16 {
+  alias /tmp/fota;
+  allow all;
+  autoindex on;
+}
+```
+
+#### 配置 FOTA 更新包
+*FOTA 更新包由鼎桥提供，但个人往往无法获取，这里给出我研究得出的一种配置方式，严格按照这种方式来配置就没有问题.*
+
+前面所提到的 `full` 文件夹下，应该包含三个文件:
+- FIRMWARE1.BIN - 二进制固件包，该包同 Linux 平台下使用的更新包，对于 Windows 平台下的更新导向，需要对其进行提取。
+- changelog.xml - 更新日志文件，必需
+- filelist.xml - 记录上两个文件的 MD5 以及大小，必需
+
+changelog.xml
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+    <component name="FIRMWARE1" version="1.1.6.0(SP1C02)"/>
+    <default-language name="de-de">1031</default-language>
+    <language name="en-us" code="1033">
+        <features>
+            <feature>1.product_name="MT5700M-CN"</feature>
+            <feature>2.update_mode="0"</feature>
+            <feature>3.source_version="1.1.6.0(SP1C02)"</feature>
+            <feature>en-us</feature>
+        </features>
+    </language>
+</root>
+```
+这里只需修改版本号。
+
+filelist.xml
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+    <component>
+        <name>FIRMWARE1</name>
+        <compress>0</compress>
+    </component>
+    <files>
+        <file>
+            <spath>changelog.xml</spath>
+            <dpath>changelog.xml</dpath>
+            <operation>c</operation>
+            <md5>86ed31415b5a0b978dfa677fa47bd1b1</md5>
+            <size>484</size>
+        </file>
+        <file>
+            <spath>FIRMWARE1.BIN</spath>
+            <dpath>FIRMWARE1.BIN</dpath>
+            <operation>c</operation>
+            <md5>06801c391284f4a12d92c5f0f6d8b830</md5>
+            <size>62770696</size>
+        </file>
+    </files>
+</root>
+```
+对于不同版本的固件包，注意更新 `md5` 和 `大小(size)`。
+#### 执行 FOTA 更新
+*详情请见 FOTA 升级指南*
+
+1. 输入 `AT^FOTASTATE?`，当前应返回 10，代表等待下载状态
+2. 输入 `AT^FOTAOEMDL="url"`，其中 `url` 填写上面的 `http://localhost/download/b16`
+3. 等待下载完成，可使用 `AT^FOTADQL` 观察下载进度
+4. 下载完成，状态回显为 `40`，输入 `AT^FWUP` 执行更新
+5. 更新准备完毕，状态回显为 `50`，设备将自动重启，进入 `DLOAD` 模式执行更新
+
+如果设备重启后没有执行更新，说明你的固件包校验失败（鼎桥为每个固件包添加了数字签名），这往往发生在自行从 exe 中提取固件包，请你再次检查。
+如果 FOTA 下载更新过程中出现错误，说明你的 FOTA 服务器配置有问题，请检查配置部分，检查 nginx access log
+
 ## 📡 天线定义
 ![](./images/antenna-define.png)
 
