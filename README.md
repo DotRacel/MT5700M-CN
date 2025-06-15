@@ -197,6 +197,8 @@ filelist.xml
 
 如果 FOTA 下载更新过程中出现错误，说明你的 FOTA 服务器配置有问题，请检查配置部分，检查 nginx access log.
 
+固件包的 Magic code 为 `55 AA 5A A5`，直接在 .exe 文件中搜索提取即可，注意尾部要严格对齐。
+
 ## 📡 天线定义
 ![](./images/antenna-define.png)
 
