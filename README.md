@@ -187,7 +187,7 @@ filelist.xml
 #### 执行 FOTA 更新
 *详情请见 FOTA 升级指南*
 
-1. 输入 `AT^FOTASTATE?`，当前应返回 10，代表等待下载状态
+1. 输入 `AT^FOTASTATE?`，当前应返回 `10`，代表等待下载状态
 2. 输入 `AT^FOTAOEMDL="url"`，其中 `url` 填写上面的 `http://localhost/download/b16`
 3. 等待下载完成，可使用 `AT^FOTADQL` 观察下载进度
 4. 下载完成，状态回显为 `40`，输入 `AT^FWUP` 执行更新
