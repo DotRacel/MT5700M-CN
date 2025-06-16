@@ -111,7 +111,11 @@ AT 通讯端口：
 - [Web UI](http://beta1.lbu.cc/): 由个人开发者开发的 `MT5700M-CN` 控制面板，暂不开源，请自行寻找下载
 
 ## Linux 兼容
-详细参见 `近端日志获取与工具集成指导书_Linux`，或者可以直接使用我写好的[内核补丁](./resources/999-tdtech-usb-vendor.patch)。
+详细参见 `Linux内核驱动集成指导`，或者可以直接使用我写好的[内核补丁](./resources/999-tdtech-usb-vendor.patch)。
+
+如果加载了 `usbserial` 驱动，并且 `lsusb` 有模组对应的设备，可以手动执行 `sudo /bin/sh -c 'echo 3466 3301 > /sys/bus/usb-serial/drivers/generic/new_id';`
+
+执行之后应当可以看到 `/dev/ttyUSB*` 的枚举。
 
 ## FOTA 升级教程
 ### 服务器搭建
